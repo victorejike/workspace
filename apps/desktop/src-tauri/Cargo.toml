@@ -1,0 +1,19 @@
+[package]
+name = "desktop"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2.1", default-features = false }
+
+[dependencies]
+workspace-types = { workspace = true }
+workspace-core = { workspace = true }
+workspace-db = { workspace = true }
+workspace-ai = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tauri = { version = "2.1", default-features = false, features = ["wry"] }

@@ -1,0 +1,67 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/workspace-types",
+    "crates/workspace-core",
+    "crates/workspace-db",
+    "crates/workspace-ai",
+    "crates/workspace-server",
+]
+default-members = [
+    "crates/workspace-types",
+    "crates/workspace-core",
+    "crates/workspace-db",
+    "crates/workspace-ai",
+    "crates/workspace-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Victor Ejike <victorejike@users.noreply.github.com>"]
+license = "MIT"
+repository = "https://github.com/victorejike/workspace"
+homepage = "https://github.com/victorejike/workspace"
+
+[workspace.dependencies]
+# Internal workspace crates
+workspace-types = { path = "crates/workspace-types" }
+workspace-core = { path = "crates/workspace-core" }
+workspace-db = { path = "crates/workspace-db" }
+workspace-ai = { path = "crates/workspace-ai" }
+
+# Serialization & Data
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.11", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Async runtime & HTTP
+tokio = { version = "1.43", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+# Web framework & Networking
+axum = { version = "0.8", features = ["ws", "macros"] }
+tower-http = { version = "0.6", features = ["cors", "trace", "fs"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+
+# Database
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "sqlite", "postgres", "chrono", "uuid", "migrate", "macros"] }
+
+# Security & Cryptography
+argon2 = "0.5"
+rand = "0.8"
+jsonwebtoken = "9.3"
+
+# Error Handling & Instrumentation
+thiserror = "2.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Schema generation for AI structured outputs
+schemars = { version = "0.8", features = ["chrono", "uuid1"] }
+
+# System info & Idle hooks
+sysinfo = "0.33"
